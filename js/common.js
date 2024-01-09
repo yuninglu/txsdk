@@ -141,6 +141,7 @@ const AEGIS_ID = {
 	dev: 'iHWefAYqBEHVFrSxnV',
 	prod: 'iHWefAYqVGQzlNLveU',
 };
+console.log(Aegis,'Aegis')
 
 const aegis = new Aegis({
 	id: isProd ? AEGIS_ID.prod : AEGIS_ID.dev,
@@ -151,19 +152,24 @@ const aegis = new Aegis({
 
 
 function reportSuccessEvent(name, sdkAppId) {
-	aegis.reportEvent({
-		name,
-		ext1: `${name}-success`,
-		ext2: DEMOKEY,
-		ext3: sdkAppId,
-	});
+	setTimeout(() => {
+		aegis.reportEvent({
+			name,
+			ext1: `${name}-success`,
+			ext2: DEMOKEY,
+			ext3: sdkAppId,
+		});
+	}, 500);
 }
 
 function reportFailedEvent({name, error, type = 'rtc', sdkAppId, roomId}) {
-	aegis.reportEvent({
-		name,
-		ext1: `${name}-failed#${roomId}*${type}*${error.message}`,
-		ext2: DEMOKEY,
-		ext3: sdkAppId,
-	});
+	console.log(aegis,'aegis')
+	setTimeout(() => {
+		aegis.reportEvent({
+			name,
+			ext1: `${name}-failed#${roomId}*${type}*${error.message}`,
+			ext2: DEMOKEY,
+			ext3: sdkAppId,
+		});
+	}, 500);
 }

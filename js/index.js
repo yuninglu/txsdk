@@ -1,10 +1,14 @@
 /* eslint-disable*/
 // -------document events--------
 
-document.getElementById('sdkAppId').value = getQueryString('sdkAppId');
-document.getElementById('secretKey').value = getQueryString('secretKey');
-document.getElementById('userId').value = getQueryString('userId') || Math.floor(Math.random() * 1000000);
-document.getElementById('roomId').value = getQueryString('roomId') || Math.floor(Math.random() * 1000);
+// document.getElementById('sdkAppId').value = getQueryString('sdkAppId');
+// document.getElementById('secretKey').value = getQueryString('secretKey');
+// document.getElementById('userId').value = getQueryString('userId') || Math.floor(Math.random() * 1000000);
+// document.getElementById('roomId').value = getQueryString('roomId') || Math.floor(Math.random() * 1000);
+document.getElementById('sdkAppId').value = 1600019951;
+document.getElementById('secretKey').value = 'a2c40520ec2a060d9ba984b07b975bdf9ccc98f774675e0047b53e068174016a';
+document.getElementById('userId').value = '888888';
+document.getElementById('roomId').value = '666666';
 const state = { url:window.location.href.split("?")[0] };
 window.history.pushState(state,'', 'index.html');
 
@@ -55,13 +59,14 @@ function initParams() {
 	shareUserId = 'share_' + userId;
 	cameraId = document.getElementById('camera-select').value;
 	microphoneId = document.getElementById('microphone-select').value;
-
-	aegis.reportEvent({
-		name: 'loaded',
-		ext1: 'loaded-success',
-		ext2: DEMOKEY,
-		ext3: sdkAppId,
-	});
+	setTimeout(() => {
+		aegis.reportEvent({
+			name: 'loaded',
+			ext1: 'loaded-success',
+			ext2: DEMOKEY,
+			ext3: sdkAppId,
+		});
+	}, 500);
 
 	if (!(sdkAppId && secretKey && roomId && userId)) {
 		if (window.lang_ === 'zh-cn') {
